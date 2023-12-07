@@ -1,0 +1,31 @@
+{% extends "default.html" %}
+
+{% block title %}
+Filters
+{% endblock title %}
+
+{% block content %}
+<h1>Фильтры</h1>
+{% if path == "/news/search/" %}
+    <form action="../../news" method="get">
+        {{filterset.form.as_p}}
+        <input type="submit" value="Применить" />
+    </form>
+{% endif %}
+
+{% if path == "/articles/search/" %}
+    <form action="../../articles" method="get">
+        {{filterset.form.as_p}}
+        <input type="submit" value="Применить" />
+    </form>
+{% endif %}
+
+{% endblock content %}
+{% block listlink %}
+<li class="nav-item">
+    <a class="nav-link" href="../articles">Articles</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="../news">News</a>
+</li>
+{% endblock listlink %}

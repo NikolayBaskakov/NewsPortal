@@ -1,0 +1,47 @@
+{% extends "default.html" %}
+
+{% load custom_filters %}
+{% load custom_tags %}
+{% block title %}
+Список новостей
+{% endblock title %}
+
+{% block content %}
+    <h1>Количество новостей - {{News|length}}</h1>
+
+    <h3><a href="../news/search">ФИЛЬТРЫ</a>
+
+    {% for new in News %}
+        <hr />
+        <h2><a href="../{{new.pk}}">{{new.title|censor}}</a></h2>
+        <h2>{{new.date|date:'M d Y ' }}</h2>
+        <h2>{{new.text|truncatechars:20|censor}}</h2>
+        <hr />
+    {% endfor %}
+    <hr />
+    {% if page_obj.has_previous%}
+        <a href="?{% url_replace page=page1%}">1</a>
+        {% if page_obj.previous_page_number != 1%}
+            ...
+            <a href="?{% url_replace page=page_obj.previous_page_number %}">{{page_obj.previous_page_number}}</a>
+        {% endif %}
+    {% endif %}
+
+    {{page_obj.number}}
+
+
+    {% if page_obj.has_next %}
+        <a href="?{% url_replace page=page_obj.next_page_number %}">{{page_obj.next_page_number}}</a>
+        {% if page_obj.next_page_number != page_obj.paginator.num_pages %}
+        ...
+            <a href="?{% url_replace page=page_obj.paginator.num_pages%}">{{page_obj.paginator.num_pages}}</a>
+        {% endif %}
+    {% endif %}
+
+    {{page_obj.num_pages}}
+{% endblock content %}
+{% block listlink %}
+<li class="nav-item">
+    <a class="nav-link" href="../articles">Articles</a>
+</li>
+{% endblock listlink %}

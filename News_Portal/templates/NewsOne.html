@@ -1,0 +1,20 @@
+{% extends "default.html" %}
+
+{% load custom_filters%}
+{% block title %}
+{{NewsOne.title}}
+{% endblock title %}
+
+{% block content %} 
+    <h1>{{NewsOne.title|censor}}</h1>
+    <h2>{{NewsOne.date|date:'d M Y'}}</h2>
+    <h3>{{NewsOne.text|censor}}</h3>
+{% endblock content %}
+{% block listlink %}
+<li class="nav-item">
+    <a class="nav-link" href="../articles">Articles</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="../news">News</a>
+</li>
+{% endblock listlink %}
