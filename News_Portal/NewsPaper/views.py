@@ -1,4 +1,5 @@
 from typing import Any
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 from.filters import PostFilter
 from .models import Post
@@ -43,32 +44,38 @@ def post_search(request):
     context = {'filterset':filterset, 'path':request.path}
     return render(request, 'search.html', context )
 
-class NewsCreate(CreateView):
+class NewsCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('NewsPaper.add_post')
     form_class = NewsForm
     model = Post
     template_name = 'post_edit.html'
     
-class ArticlesCreate(CreateView):
+class ArticlesCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('NewsPaper.add_post')
     form_class = ArticlesForm
     model = Post
     template_name = 'post_edit.html'
     
-class NewsEdit(UpdateView):
+class NewsEdit(PermissionRequiredMixin, UpdateView):
+    permission_required = ('NewsPaper.change_post')
     form_class = NewsForm
     model = Post
     template_name = 'post_edit.html'
     
-class ArticlesEdit(UpdateView):
+class ArticlesEdit(PermissionRequiredMixin, UpdateView):
+    permission_required = ('NewsPaper.change_post')
     form_class = ArticlesForm
     model = Post
     template_name = 'post_edit.html'
     
-class NewsDelete(DeleteView):
+class NewsDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('NewsPaper.delete_post')
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('news_list')
     
-class ArticlesDelete(DeleteView):
+class ArticlesDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('NewsPaper.delete_post')
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('news_list')
