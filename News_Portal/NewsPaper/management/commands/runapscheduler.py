@@ -42,8 +42,8 @@ def my_job():
                     pass
                     
         else:
-            print('нет новых постов')
-    except IndexError:
+            pass
+    except IndexError: #исключение, если база выполненных работ пуста
         pass
 
 
