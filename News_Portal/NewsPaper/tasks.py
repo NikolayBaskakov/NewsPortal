@@ -4,7 +4,8 @@ from .models import Post, Subscriber, PostCategory
 from django.core.mail import EmailMultiAlternatives
 
 @shared_task
-def send_if_post_created(instance, **kwargs):
+def send_if_post_created(instance_id, **kwargs):
+    instance = Post.objects.get(pk=instance_id)
     postcategory_queryset = PostCategory.objects.filter(post=instance.pk)
     categories = [i.category for i in postcategory_queryset]
     subs_ids = set()
