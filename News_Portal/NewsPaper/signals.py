@@ -6,4 +6,4 @@ from django.core.mail import EmailMultiAlternatives
 from .tasks import send_if_post_created
 @receiver(m2m_changed, sender=Post.category.through)
 def post_created(instance, **kwargs):
-    send_if_post_created(instance)
+    send_if_post_created(instance).delay()
