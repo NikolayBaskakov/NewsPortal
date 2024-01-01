@@ -2,6 +2,7 @@ from celery import shared_task
 from django.contrib.auth.models import User
 from .models import Post, Subscriber, PostCategory
 from django.core.mail import EmailMultiAlternatives
+import datetime
 
 @shared_task
 def send_if_post_created(instance_id, **kwargs):
@@ -29,3 +30,33 @@ def send_if_post_created(instance_id, **kwargs):
         msg = EmailMultiAlternatives(subject, text_content, None, [email])
         msg.attach_alternative(html_content, "text/html")
         msg.send()
+        
+@shared_task
+def send_news():
+        last_exec_date= datetime.datetime.utcnow()-datetime.timedelta(weeks=1)
+        new_posts = Post.objects.filter(date__gt=last_exec_date)
+        if new_posts:
+            for u in User.objects.all():
+                sub_categories = Subscriber.objects.filter(user=u).values_list('category')
+                message = f''
+                html = f''
+                for p in new_posts:
+                    post_categories_ids = PostCategory.objects.filter(post=p).values_list('category')
+                    flag = False
+                    for c in post_categories_ids:
+                        if c in sub_categories:
+                            flag = True
+                            break
+                    if flag:
+                        message += f'http://127.0.0.1:8000/{p.pk} \n'
+                        html += f'<a href="http://127.0.0.1:8000/{p.pk}">Пост №{p.pk}</a><br>'
+                if message:
+                    message = f'Новые посты по вашим категориям: \n' + message
+                    html = f'<h2>Новые посты по вашим категориям: </h2><br>' + html
+                    msg = EmailMultiAlternatives('Новые посты по вашим категориям', message, None, [u.email])
+                    msg.attach_alternative(html, "text/html")
+                    msg.send()
+                else:
+                    print(f'для пользователя {u.email} нет постов по подпискам')
+        else:
+            print('не было новых постов')
