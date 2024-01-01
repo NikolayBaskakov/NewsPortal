@@ -34,8 +34,7 @@ def send_if_post_created(instance_id, **kwargs):
 @shared_task
 def send_news():
         last_exec_date= datetime.datetime.utcnow()-datetime.timedelta(weeks=1)
-        print(f'{last_exec_date} / {datetime.datetime.utcnow()} / {datetime.timedelta(weeks=1)}' )
-        '''new_posts = Post.objects.filter(date__gt=last_exec_date)
+        new_posts = Post.objects.filter(date__gt=last_exec_date)
         if new_posts:
             for u in User.objects.all():
                 sub_categories = Subscriber.objects.filter(user=u).values_list('category')
@@ -60,4 +59,4 @@ def send_news():
                 else:
                     print(f'для пользователя {u.email} нет постов по подпискам')
         else:
-            print('не было новых постов')'''
+            print('не было новых постов')
