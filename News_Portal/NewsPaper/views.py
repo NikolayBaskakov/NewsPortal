@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Exists, OuterRef
+from django.core.cache import cache
 # Create your views here.
 class NewsList(ListView):
     model = Post
@@ -39,7 +40,14 @@ class ArticleList(NewsList):
 class NewsDetail(DetailView):
     model = Post
     template_name = 'NewsOne.html'
+    queryset = Post.objects.all()
     context_object_name = 'NewsOne'
+    def get_object(self, *args, **kwargs):
+        obj = cache.get(f'post-{self.kwargs["pk"]}', None)
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'product-{self.kwargs["pk"]}', obj)
+        return obj
     
 def post_search(request):
     queryset = Post.objects.all()
