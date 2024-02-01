@@ -178,10 +178,15 @@ CELERY_RESULT_SERIALIZER = 'json'
     }
 }'''
 
+ADMINS = [
+    ('Petr', 'petr@gmail.com'),
+    ('ivan', 'ivan@gmail.com'),
+]
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'style' : '{', 
+    'style' : '{',
     'formatters': {
         'simple': {
             'format': '%(levelname)s %(message)s'
@@ -206,6 +211,9 @@ LOGGING = {
         'require_debug_true': {
             '()': 'django.utils.log.RequireDebugTrue',
         },
+        'require_debug_false': {
+            "()": "django.utils.log.RequireDebugFalse",
+        }
     },
     'handlers': {
         'console_debug': {
@@ -228,33 +236,35 @@ LOGGING = {
         },
         'file_info': {
             'level': 'INFO',
-            'filters': [],
+            'filters': ['require_debug_false'],
             'class':'logging.FileHandler',
             'filename': 'general.log',
             'formatter': 'info'
         },
         'file_error': {
             'level': 'ERROR',
-            'filters': [],
+            'filters': ['require_debug_false'],
             'class':'logging.FileHandler',
             'filename': 'errors.log',
             'formatter': 'error'
         },
         'file_security': {
             'level': 'INFO',
-            'filters': [],
+            'filters': ['require_debug_false'],
             'class':'logging.FileHandler',
             'filename': 'security.log',
             'formatter': 'info'
         },
         'mail_admin':{
             'level':'ERROR',
+            'filters' : ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         }
     },
     'loggers': {
         'django': {
             'handlers': ['console_debug', 'console_warning', 'console_error', 'file_info'],
+            'level': 'DEBUG',
             'propagate': True,
         },
         'django.request': {
