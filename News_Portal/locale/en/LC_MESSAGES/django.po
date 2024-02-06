@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-06 17:26+0300\n"
+"POT-Creation-Date: 2024-02-06 17:42+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: .\templates\403.html:19
 msgid "Error code 403: no roots"
 msgstr "Error code 403: no roots"
@@ -24,3 +25,19 @@ msgstr "Error code 403: no roots"
 #: .\templates\403.html:20
 msgid "ask your admin to get roots"
 msgstr "ask your admin to get roots"
+
+#: .\templates\default.html:35
+msgid "News Portal"
+msgstr "News Portal"
+
+#: .\templates\default.html:45
+msgid "Home"
+msgstr "Home"
+
+#: .\templates\default.html:48
+msgid "About"
+msgstr "About"
+
+#: .\templates\default.html:51
+msgid "Contacts"
+msgstr "Contacts"
