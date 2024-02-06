@@ -1,5 +1,21 @@
+{% load i18n %}
 {% load cache %}
+<form action="{% url 'set_language' %}" method="POST"> {% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
+    <input type="hidden" name="next" value="{{ redirect_to }}">
+    {% get_current_language as LANGUAGE_CODE %}
+    <select name="language" id="">
+        {% get_available_languages as LANGUAGES %} <!-- получаем языки -->
+        {% get_language_info_list for LANGUAGES as languages %} <!-- Помещаем их в список languages -->
+
+        {% for language in languages %} <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+            <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                {{ language.name_local }} - {{ language.code }}
+            </option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="set">
+</form>
 {% cache 60 error403 %}
-    <h1>Код ошибки 403: у вас нет прав доступа к данной странице</h1>
-    <h2><b>обратитесь к администратору для получения прав</b></h2>
+    <h1>{% trans "Error code 403: no roots" %}</h1>
+    <h2><b>{% trans "ask your admin to get roots" %}</b></h2>
 {% endcache %}
