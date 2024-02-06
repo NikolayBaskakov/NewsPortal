@@ -10,6 +10,9 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Exists, OuterRef
 from django.core.cache import cache
+import pytz
+from django.utils import timezone
+from django.shortcuts import redirect
 # Create your views here.
 class NewsList(ListView):
     model = Post
@@ -17,6 +20,7 @@ class NewsList(ListView):
     template_name = 'News.html'
     context_object_name ='News'
     paginate_by = 10
+    
     
     def get_queryset(self):
         queryset = Post.objects.filter(type='NW')
@@ -26,7 +30,13 @@ class NewsList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filterset'] = self.filterset
+        context['timezones'] = pytz.common_timezones
+        context['current_time'] = timezone.localtime(timezone.now())
         return context
+    
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/news')
     
 class ArticleList(NewsList):
     template_name = 'Articles.html'

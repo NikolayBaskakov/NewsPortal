@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'NewsPaper.middlewares.TimezoneMiddleware',
 ]
 
 ROOT_URLCONF = 'News_Portal.urls'
@@ -190,7 +191,7 @@ ADMINS = [
     ('ivan', 'ivan@gmail.com'),
 ]
 
-LOGGING = {
+'''LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'style' : '{',
@@ -300,7 +301,7 @@ LOGGING = {
             'propagate': False,
         },
     }
-}
+}'''
 
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')
