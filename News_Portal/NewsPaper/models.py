@@ -27,23 +27,11 @@ class Author(models.Model):
     def __str__(self) -> str:
         return f'{self.user.username}'
     
-    class Meta:
-        verbose_name = 'Автор'
-        verbose_name_plural = 'Авторы'
-    
-    
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     
     def __str__(self) -> str:
         return f'{self.name}'
-    
-    class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
-    
-    
-    
     
 class Post(models.Model):
     article = 'AR'
@@ -80,11 +68,6 @@ class Post(models.Model):
         
     def __str__(self) -> str:
         return f'{self.title[:20]}'
-        
-    class Meta:
-        verbose_name = 'Пост'
-        verbose_name_plural = 'Посты'
-        
 
 class PostCategory(models.Model):
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
@@ -104,10 +87,6 @@ class Comment(models.Model):
     def dislike(self):
         self.rating -=1
         self.save()
-        
-    class Meta:
-        verbose_name = 'Комментарий'
-        verbose_name_plural = 'Комментарии'
         
     def __str__(self) -> str:
         return f'{self.text[:15]}'

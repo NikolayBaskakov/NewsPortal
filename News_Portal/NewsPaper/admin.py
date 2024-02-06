@@ -1,6 +1,13 @@
 from django.contrib import admin
 from .models import *
+from modeltranslation.admin import TranslationAdmin
 # Register your models here.
+class CategoryAdmin(TranslationAdmin):
+    model = Category
+
+class PostAdmin(TranslationAdmin):
+    model = Post
+    
 def update_rating(modeladmin, request, queryset):
     queryset.update(rating=0)
 class PostAdmin(admin.ModelAdmin):
