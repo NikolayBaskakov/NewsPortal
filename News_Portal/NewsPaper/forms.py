@@ -8,7 +8,9 @@ class NewsForm(forms.ModelForm):
         fields = ['title',
                   'text',
                   'author', 
-                  'category'
+                  'category',
+                  'title_en_us',
+                  'title_ru',
             
         ]
     def clean(self):
@@ -27,8 +29,9 @@ class ArticlesForm(forms.ModelForm):
         fields = ['title',
                   'text',
                   'author', 
-                  'category'
-            
+                  'category',
+                  'title_en_us',
+                  'title_ru',
         ]
     def clean(self):
         cleaned_data = super().clean()

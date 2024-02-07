@@ -6,8 +6,8 @@ from django.core.cache import cache
 # Create your models here.
         
 class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    rating = models.FloatField(default=0.0)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='пользователь')
+    rating = models.FloatField(default=0.0, verbose_name='Рейтинг')
     
     def update_rating(self):
         article_raiting = 0
@@ -28,7 +28,7 @@ class Author(models.Model):
         return f'{self.user.username}'
     
 class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100, unique=True, verbose_name='Название')
     
     def __str__(self) -> str:
         return f'{self.name}'
@@ -39,13 +39,13 @@ class Post(models.Model):
 
     TYPES = [(article, 'Статья'),
              (news, 'Новость')]
-    author = models.ForeignKey('Author', on_delete=models.CASCADE)
-    type = models.CharField(max_length= 2, choices=TYPES, default=news)
+    author = models.ForeignKey('Author', on_delete=models.CASCADE, verbose_name='Автор')
+    type = models.CharField(max_length= 2, choices=TYPES, default=news, verbose_name='Тип')
     date = models.DateTimeField(auto_now_add=True)
-    category = models.ManyToManyField('Category', through='PostCategory')
-    title = models.CharField(max_length=255)
-    text = models.TextField()
-    rating = models.IntegerField(default=0)
+    category = models.ManyToManyField('Category', through='PostCategory', verbose_name='Категория')
+    title = models.CharField(max_length=255, verbose_name='Заголовок')
+    text = models.TextField(verbose_name='Основной текст')
+    rating = models.IntegerField(default=0, verbose_name='Рейтинг')
     
     def get_absolute_url(self):
         return reverse('news_detail', args=[str(self.id)])
