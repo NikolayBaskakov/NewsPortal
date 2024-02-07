@@ -1,15 +1,15 @@
 {% extends "default.html" %}
-
+{% load i18n %}
 {% load custom_filters %}
 {% load custom_tags %}
 {% block title %}
-Список новостей
+{% trans "Список новостей" %}
 {% endblock title %}
 
 {% block content %}
-    <h1>Количество новостей - {{News|length}}</h1>
+    <h1>{% trans "Количество новостей" %} - {{News|length}}</h1>
 
-    <h3><a href="../news/search">ФИЛЬТРЫ</a>
+    <h3><a href="../news/search">{% trans "ФИЛЬТРЫ" %}</a>
 
     {% for new in News %}
         <hr />

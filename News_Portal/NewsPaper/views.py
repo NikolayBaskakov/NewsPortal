@@ -19,7 +19,7 @@ class NewsList(ListView):
     ordering = 'date'
     template_name = 'News.html'
     context_object_name ='News'
-    paginate_by = 10
+    paginate_by = 4
     
     
     def get_queryset(self):
@@ -39,12 +39,29 @@ class NewsList(ListView):
         return redirect('/news')
     
 class ArticleList(NewsList):
+    model = Post
+    ordering = 'date'
     template_name = 'Articles.html'
+    context_object_name ='Articles'
+    paginate_by = 4
+    
+    
     def get_queryset(self):
         queryset = Post.objects.filter(type='AR')
         self.filterset = PostFilter(self.request.GET, queryset)
         return self.filterset.qs
-        
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filterset'] = self.filterset
+        context['timezones'] = pytz.common_timezones
+        context['current_time'] = timezone.localtime(timezone.now())
+        return context
+    
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/articles')
+    
     
     
 class NewsDetail(DetailView):

@@ -41,7 +41,7 @@ class Post(models.Model):
              (news, 'Новость')]
     author = models.ForeignKey('Author', on_delete=models.CASCADE, verbose_name='Автор')
     type = models.CharField(max_length= 2, choices=TYPES, default=news, verbose_name='Тип')
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     category = models.ManyToManyField('Category', through='PostCategory', verbose_name='Категория')
     title = models.CharField(max_length=255, verbose_name='Заголовок')
     text = models.TextField(verbose_name='Основной текст')

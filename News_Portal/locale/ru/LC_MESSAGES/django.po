@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-06 17:42+0300\n"
+"POT-Creation-Date: 2024-02-07 06:12+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,18 +28,54 @@ msgstr "Ошибка 403: нет прав"
 msgid "ask your admin to get roots"
 msgstr "обратитесь к администратору для получения прав"
 
-#: .\templates\default.html:35
+#: .\templates\Articles.html:10
+msgid "Количество статей"
+msgstr "Количество статей"
+
+#: .\templates\Articles.html:12 .\templates\News.html:12
+msgid "ФИЛЬТРЫ"
+msgstr "ФИЛЬТРЫ"
+
+#: .\templates\News.html:6
+msgid "Список новостей"
+msgstr "Список новостей"
+
+#: .\templates\News.html:10
+msgid "Количество новостей"
+msgstr "Количество новостей"
+
+#: .\templates\default.html:45
 msgid "News Portal"
 msgstr "Новостной портал"
 
-#: .\templates\default.html:45
+#: .\templates\default.html:55
 msgid "Home"
 msgstr "Главная"
 
-#: .\templates\default.html:48
+#: .\templates\default.html:58
 msgid "About"
 msgstr "О нас"
 
-#: .\templates\default.html:51
+#: .\templates\default.html:61
 msgid "Contacts"
 msgstr "Контакты"
+
+#: .\templates\post_delete.html:8
+msgid "Удаляем"
+msgstr "Удаляем"
+
+#: .\templates\search.html:8
+msgid "Фильтры"
+msgstr "Фильтры"
+
+#: .\templates\search.html:12 .\templates\search.html:19
+msgid "Применить"
+msgstr "Применить"
+
+#: .\templates\subscriptions.html:16 .\templates\subscriptions.html:19
+msgid "Подписаться"
+msgstr "Подписаться"
+
+#: .\templates\subscriptions.html:17 .\templates\subscriptions.html:20
+msgid "Отписаться"
+msgstr "Отписаться"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-06 17:42+0300\n"
+"POT-Creation-Date: 2024-02-07 06:12+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,18 +26,54 @@ msgstr "Error code 403: no roots"
 msgid "ask your admin to get roots"
 msgstr "ask your admin to get roots"
 
-#: .\templates\default.html:35
+#: .\templates\Articles.html:10
+msgid "Количество статей"
+msgstr "Number of news"
+
+#: .\templates\Articles.html:12 .\templates\News.html:12
+msgid "ФИЛЬТРЫ"
+msgstr "FILTERS"
+
+#: .\templates\News.html:6
+msgid "Список новостей"
+msgstr "News list"
+
+#: .\templates\News.html:10
+msgid "Количество новостей"
+msgstr "Number of news"
+
+#: .\templates\default.html:45
 msgid "News Portal"
 msgstr "News Portal"
 
-#: .\templates\default.html:45
+#: .\templates\default.html:55
 msgid "Home"
 msgstr "Home"
 
-#: .\templates\default.html:48
+#: .\templates\default.html:58
 msgid "About"
 msgstr "About"
 
-#: .\templates\default.html:51
+#: .\templates\default.html:61
 msgid "Contacts"
 msgstr "Contacts"
+
+#: .\templates\post_delete.html:8
+msgid "Удаляем"
+msgstr "Delete"
+
+#: .\templates\search.html:8
+msgid "Фильтры"
+msgstr "Filters"
+
+#: .\templates\search.html:12 .\templates\search.html:19
+msgid "Применить"
+msgstr "Submit"
+
+#: .\templates\subscriptions.html:16 .\templates\subscriptions.html:19
+msgid "Подписаться"
+msgstr "Subscribe"
+
+#: .\templates\subscriptions.html:17 .\templates\subscriptions.html:20
+msgid "Отписаться"
+msgstr "Unsubsribe"

@@ -1,22 +1,22 @@
 {% extends "default.html" %}
-
+{% load i18n %}
 {% block title %}
 Filters
 {% endblock title %}
 
 {% block content %}
-<h1>Фильтры</h1>
+<h1>{%trans "Фильтры" %}</h1>
 {% if path == "/news/search/" %}
     <form action="../../news" method="get">
         {{filterset.form.as_p}}
-        <input type="submit" value="Применить" />
+        <input type="submit" value="{% trans "Применить" %}" />
     </form>
 {% endif %}
 
 {% if path == "/articles/search/" %}
     <form action="../../articles" method="get">
         {{filterset.form.as_p}}
-        <input type="submit" value="Применить" />
+        <input type="submit" value="{% trans "Применить" %}" />
     </form>
 {% endif %}
 
