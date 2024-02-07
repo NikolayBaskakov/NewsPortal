@@ -1,4 +1,4 @@
-from django.apps import AppConfig
+'''from django.apps import AppConfig
 
 
 class NewspaperConfig(AppConfig):
@@ -6,4 +6,4 @@ class NewspaperConfig(AppConfig):
     name = 'NewsPaper'
     
     def ready(self):
-        from . import signals
+        from . import signals'''

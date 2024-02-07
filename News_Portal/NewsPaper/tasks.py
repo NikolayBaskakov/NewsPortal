@@ -1,4 +1,4 @@
-from celery import shared_task
+'''from celery import shared_task
 from django.contrib.auth.models import User
 from .models import Post, Subscriber, PostCategory
 from django.core.mail import EmailMultiAlternatives
@@ -59,4 +59,4 @@ def send_news():
                 else:
                     print(f'для пользователя {u.email} нет постов по подпискам')
         else:
-            print('не было новых постов')
+            print('не было новых постов')'''
